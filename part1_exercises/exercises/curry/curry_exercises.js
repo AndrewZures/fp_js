@@ -6,24 +6,28 @@ var _ = require('ramda');
 //==============
 // Refactor to remove all arguments by partially applying the function
 
-var words = function(str) {
-  return _.split(' ', str);
-};
+// var words = function(str) {
+//   return _.split(' ', str);
+// };
+
+var words = _.split(' ');
 
 // Exercise 1a
 //==============
 // Use map to make a new words fn that works on an array of strings.
 
-var sentences = undefined;
+var sentences = map(words);
 
 
 // Exercise 2
 //==============
 // Refactor to remove all arguments by partially applying the functions
 
-var filterQs = function(xs) {
-  return _.filter(function(x){ return _.match(/q/i, x);  }, xs);
-};
+// var filterQs = function(xs) {
+//   return _.filter(function(x){ return _.match(/q/i, x);  }, xs);
+// };
+//
+var filterQs = _.filter(_.match(/q/i))
 
 
 // Exercise 3
@@ -34,19 +38,19 @@ var filterQs = function(xs) {
 var _keepHighest = function(x,y){ return x >= y ? x : y; };
 
 // REFACTOR THIS ONE:
-var max = function(xs) {
-  return _.reduce(function(acc, x){
-    return _keepHighest(acc, x);
-  }, 0, xs);
-};
+// var max = function(xs) {
+//   return _.reduce(function(acc, x){
+//     return _keepHighest(acc, x);
+//   }, 0, xs);
+// };
 
-  
+var max = _.reduce(_keepHighest, 0);
+
 // Bonus 1:
 // ============
 // wrap array's built in slice to be functional and curried like fn's in ramda
 // //[1,2,3].slice(0, 2)
 var slice = undefined;
-
 
 // Bonus 2:
 // ============

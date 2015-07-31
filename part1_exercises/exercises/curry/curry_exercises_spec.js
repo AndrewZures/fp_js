@@ -2,7 +2,7 @@ var E = require('./curry_exercises');
 var assert = require("chai").assert;
 
 describe("Curry Exercises", function(){
-  
+
   it('Exercise 1', function(){
     assert.deepEqual(E.words("Jingle bells Batman smells"), ['Jingle', 'bells', 'Batman', 'smells']);
   });
