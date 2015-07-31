@@ -18,7 +18,11 @@ var user = {
   }
 };
 
-var ex1 = undefined;
+var ex1 = _.compose(join,
+                    _.map(safeProp("name")),
+                    join,
+                    _.map(safeProp("street")),
+                    safeProp("address"))
 
 
 // Exercise 2
@@ -36,7 +40,14 @@ var pureLog = function(x) {
   });
 }
 
-var ex2 = undefined;
+var dosomething = function(x) {
+  return new IO(function(){
+    return x.split('\\').pop().split('/').pop();
+  });
+}
+
+var ex2 = _.compose(_.chain(pureLog), _.chain(dosomething), getFile)
+// var ex2 = _.compose(join, _.map(pureLog), join, _.map(dosomething), getFile)
 
 
 
@@ -60,7 +71,9 @@ var getComments = function(i) {
   });
 }
 
-var ex3 = undefined;
+//notice how the _.map, to open it up, adjust, close it - AJZ
+// var ex3 = _.compose(join, _.map(getComments), _.map(_.prop("id")), getPost)
+var ex3 = _.compose(_.chain(getComments), _.map(_.prop("id")), getPost)
 
 
 // Exercise 4
@@ -83,12 +96,18 @@ function emailBlast(list) {
   });
 }
 
+function log(x) {
+  console.log(x);
+  return x
+}
+
 var validateEmail = function(x){
   return x.match(/\S+@\S+\.\S+/) ? (new Right(x)) : (new Left('invalid email'));
 }
 
 //  ex4 :: Email -> Either String (IO String)
-var ex4 = undefined;
+executeEmailStuff = _.compose(join, log, _.map(emailBlast), _.map(addToMailingList))
+var ex4 = _.compose(executeEmailStuff, validateEmail)
 
 
 module.exports = {ex1: ex1, ex2: ex2, ex3: ex3, ex4: ex4, user: user}
