@@ -66,9 +66,10 @@ var availablePrices = function(cars) {
   }).join(', ');
 };
 
+//notice at somepiont it is good to break out subcompositions
+var dollarBillz = _.compose(accounting.formatMoney, _.prop('dollar_value'))
 var availablePrices = _.compose(_.join(', '),
-                                _.map(_.compose(accounting.formatMoney,
-                                                _.prop('dollar_value'))),
+                                _.map(dollarBillz),
                                 _.filter(_.prop('in_stock')))
 
 
@@ -82,8 +83,10 @@ var availablePrices = _.compose(_.join(', '),
 //   return fastest.name + ' is the fastest';
 // };
 
-var append = function(name){ return name + " is the fastest" };
-var fastestCar = _.compose(append,
+//notice how crazy adherence to composition can lead to silly results, and
+// it can be better to simply use other methods in many instances
+var format = _.curry(function(x, y){ return y + x });
+var fastestCar = _.compose(format(" is the fastest"),
                            _.prop("name"),
                            _.last,
                            _.sortBy(_.prop("horsepower")))
