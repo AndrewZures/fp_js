@@ -20,6 +20,7 @@ describe("Functor Exercises", function(){
 
   it('Exercise 4', function(){
     assert.deepEqual(Maybe.of(4), E.ex4("4"));
+    // assert.deepEqual(Maybe.of(4), E.ex4("ASDFASDDSF"));
   });
 
   it('Exercise 5', function(done){
