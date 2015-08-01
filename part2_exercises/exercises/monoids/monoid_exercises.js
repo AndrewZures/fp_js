@@ -10,6 +10,10 @@ var Any = Monoids.Any;
 var All = Monoids.All;
 var getResult = Monoids.getResult;
 
+function log(x) {
+  console.log(x);
+  return x
+}
 
 
 
@@ -19,7 +23,7 @@ var getResult = Monoids.getResult;
 
 var sum = _.reduce(_.add, 0);
 
-var ex1 = undefined;
+var ex1 = _.compose(getResult, mconcat, _.map(Sum))
 
 
 
@@ -28,7 +32,7 @@ var ex1 = undefined;
 // ==========
 // Similar to the above, get the Product of the list.
 
-var ex2 = undefined;
+var ex2 = _.compose(getResult, mconcat, _.map(Product))
 
 
 
@@ -36,7 +40,7 @@ var ex2 = undefined;
 // Exercise 3
 // ==========
 // Similar to the above, get the Max of the list.
-var ex3 = undefined;
+var ex3 = _.compose(getResult, mconcat, _.map(Max))
 
 
 
@@ -49,9 +53,7 @@ var lastName = _.prop('last');
 var space = function(){ return ' ' }
 var user = { first: "Bill", middle: "Jefferson", last: "Clinton" };
 
-var ex4 = undefined;
-
-
+var ex4 = _.compose(mconcat([firstName, space, middleName, space, lastName]))
 
 
 // Bonus

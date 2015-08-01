@@ -19,6 +19,7 @@ describe("Monoid Answers", function(){
 
   it('Exercise 4', function(){
     assert.equal("Bill Jefferson Clinton", E.ex4(E.user));
+    // assert.equal("Bill Jefferson Clinton", E.ex4(["Bill", "Jefferson", "Clinton"]));
   });
 
   it('Bonus', function(){

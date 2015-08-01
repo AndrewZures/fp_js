@@ -72,8 +72,8 @@ var getComments = function(i) {
 }
 
 //notice how the _.map, to open it up, adjust, close it - AJZ
-// var ex3 = _.compose(join, _.map(getComments), _.map(_.prop("id")), getPost)
-var ex3 = _.compose(_.chain(getComments), _.map(_.prop("id")), getPost)
+var ex3 = _.compose(join, _.map(getComments), _.map(_.prop("id")), getPost)
+// var ex3 = _.compose(_.chain(getComments), _.map(_.prop("id")), getPost)
 
 
 // Exercise 4
@@ -106,7 +106,7 @@ var validateEmail = function(x){
 }
 
 //  ex4 :: Email -> Either String (IO String)
-executeEmailStuff = _.compose(join, log, _.map(emailBlast), _.map(addToMailingList))
+executeEmailStuff = _.compose(_.map(emailBlast), _.map(addToMailingList))
 var ex4 = _.compose(executeEmailStuff, validateEmail)
 
 
